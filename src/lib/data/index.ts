@@ -33,7 +33,7 @@ import { impactoDeCobro } from "@/lib/fiscal/simulacion";
 import { generarSeed, type Seed } from "@/lib/mock/seed";
 import { hoyISO } from "./hoy";
 
-export { hoyISO } from "./hoy";
+export { hoyISO, horaAR } from "./hoy";
 
 const MAX_PROXIMOS = 6;
 

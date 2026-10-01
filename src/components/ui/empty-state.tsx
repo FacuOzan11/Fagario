@@ -10,9 +10,19 @@ type EmptyStateProps = Omit<React.ComponentProps<"div">, "title"> & {
   description?: React.ReactNode;
   /** CTA (por ejemplo, un <Button>). */
   action?: React.ReactNode;
+  /** Nivel del título según la jerarquía de la página. */
+  headingLevel?: "h1" | "h2" | "h3";
 };
 
-function EmptyState({ icon: IconComp, title, description, action, className, ...props }: EmptyStateProps) {
+function EmptyState({
+  icon: IconComp,
+  title,
+  description,
+  action,
+  headingLevel: Heading = "h3",
+  className,
+  ...props
+}: EmptyStateProps) {
   return (
     <div
       data-slot="empty-state"
@@ -26,7 +36,7 @@ function EmptyState({ icon: IconComp, title, description, action, className, ...
         <IconComp weight="light" aria-hidden className="size-14 text-subtle-foreground" />
       ) : null}
       <div className="grid max-w-md gap-2">
-        <h3 className="text-title text-foreground">{title}</h3>
+        <Heading className="text-title text-foreground">{title}</Heading>
         {description ? <p className="text-[0.9375rem] leading-relaxed text-muted-foreground">{description}</p> : null}
       </div>
       {action ? <div className="mt-1 flex flex-wrap justify-center gap-3">{action}</div> : null}

@@ -125,7 +125,27 @@ export const copy = {
     categoriaSiguienteDetalle: (letra: LetraCategoria, tope: string, cuota: string) =>
       `${letra}: tope ${tope}, cuota ${cuota} por mes`,
     sinCategoriaSiguiente: "Ya estás en la categoría más alta.",
+    verDetalle: "Ver semáforo",
+    cuotaLabel: "Cuota mensual",
+    nivel: { verde: "verde", amarillo: "amarillo", rojo: "rojo" } as const satisfies Record<NivelSemaforo, string>,
     graficoTitulo: "Facturación por mes",
+    graficoBajada: "La barra destacada es el mes en curso.",
+    graficoMes: "Mes",
+    graficoMonto: "Facturado",
+    graficoRitmo: (monto: string) => `Ritmo para no pasarte: ${monto} por mes`,
+    simulador: {
+      titulo: "¿Y si cobro…?",
+      descripcion: "Probá un monto y te decimos cómo queda tu semáforo antes de facturarlo.",
+      montoLabel: "Monto del cobro",
+      montoPlaceholder: "0",
+      monedaLabel: "Moneda",
+      vacio: "Escribí un monto para simular.",
+      seguis: (nivel: string) => `Seguís en ${nivel}`,
+      pasasA: (nivel: string) => `Este cobro te pasa a ${nivel}`,
+      teQuedarian: (monto: string) => `Te quedarían ${monto} hasta el tope.`,
+      quedariasEn: (porcentaje: string) => `Quedarías en el ${porcentaje} del tope.`,
+      error: "No pudimos simular ese monto. Probá de nuevo.",
+    },
     graficoAria: (meses: number) => `Gráfico de facturación de los últimos ${meses} meses`,
     alertasTitulo: "Para tener en cuenta",
     sinAlertas: "Nada pendiente por ahora.",
@@ -201,6 +221,9 @@ export const copy = {
     sinFactura: "Sin factura",
     facturado: "Facturado",
     conteo: (n: number) => (n === 1 ? "1 cobro" : `${n} cobros`),
+    nuevoProximamente: "Muy pronto vas a poder cargar cobros desde acá, en segundos.",
+    accionProximamente: "Próximamente",
+    estimadoEnPesos: (monto: string) => `≈ ${monto}`,
   },
 
   emptyStates: {
@@ -312,6 +335,7 @@ export const copy = {
     cancelar: "Cancelar",
     guardar: "Guardar",
     valorDeEjemplo: "Valor de ejemplo, no oficial",
+    ayuda: "Más información",
   },
 } as const;
 

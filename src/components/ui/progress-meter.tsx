@@ -30,6 +30,8 @@ type ProgressMeterProps = Omit<React.ComponentProps<"div">, "children"> & {
   label: string;
   /** Texto legible del valor, ej. "72 % del tope". */
   valueText?: string;
+  /** Grosor de la barra: md 8px, lg 12px. */
+  size?: "md" | "lg";
 };
 
 const clamp = (n: number) => Math.min(1, Math.max(0, n));
@@ -40,6 +42,7 @@ function ProgressMeter({
   ticks,
   label,
   valueText,
+  size = "md",
   className,
   ...props
 }: ProgressMeterProps) {
@@ -57,7 +60,7 @@ function ProgressMeter({
         aria-valuemax={100}
         aria-valuenow={pct}
         aria-valuetext={valueText ?? `${pct.toLocaleString("es-AR")} %`}
-        className="relative h-2 w-full rounded-full bg-surface-muted"
+        className={cn("relative w-full rounded-full bg-surface-muted", size === "lg" ? "h-3" : "h-2")}
       >
         <motion.div
           className={fillVariants({ tone })}
@@ -69,7 +72,7 @@ function ProgressMeter({
           <span
             key={t.value}
             aria-hidden
-            className="absolute -top-1 -bottom-1 w-0.5 -translate-x-1/2 rounded-full bg-border-strong ring-2 ring-background"
+            className="absolute -top-1.5 -bottom-1.5 w-0.5 -translate-x-1/2 rounded-full bg-border-strong ring-2 ring-background"
             style={{ left: `${clamp(t.value) * 100}%` }}
           />
         ))}

@@ -17,3 +17,11 @@ export function hoyISO(ahora: Date = new Date()): string {
     day: "2-digit",
   }).format(ahora);
 }
+
+/** Hora actual (0–23) en Argentina, para el saludo. Respeta `TOPE_HORA` (env) en demos/tests. */
+export function horaAR(ahora: Date = new Date()): number {
+  const env = typeof process !== "undefined" ? process.env.TOPE_HORA : undefined;
+  if (env && /^\d{1,2}$/.test(env) && Number(env) <= 23) return Number(env);
+  const h = new Intl.DateTimeFormat("en-GB", { timeZone: ZONA_HORARIA, hour: "2-digit", hourCycle: "h23" }).format(ahora);
+  return Number(h) % 24;
+}
