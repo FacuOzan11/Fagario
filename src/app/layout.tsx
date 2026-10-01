@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import { GeistSans } from "geist/font/sans";
+import { ThemeScript } from "@/components/ui/theme-script";
 import "./globals.css";
 
 const instrumentSerif = localFont({
@@ -31,6 +32,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       suppressHydrationWarning
       className={`${GeistSans.variable} ${instrumentSerif.variable} h-full antialiased`}
     >
+      <head>
+        <ThemeScript />
+      </head>
       <body className="min-h-full">{children}</body>
     </html>
   );
