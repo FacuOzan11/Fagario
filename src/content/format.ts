@@ -92,18 +92,11 @@ function isoAUtc(iso: string): number {
   return Date.UTC(Number(m[1]), Number(m[2]) - 1, Number(m[3]));
 }
 
-/** Fecha de hoy en Argentina como "YYYY-MM-DD" (para usar como `hoy` por defecto). */
-export function hoyISO(ahora: Date = new Date()): string {
-  // Argentina es UTC-3 todo el año (sin horario de verano).
-  const ar = new Date(ahora.getTime() - 3 * 60 * 60 * 1000);
-  return ar.toISOString().slice(0, 10);
-}
-
 /**
  * "2026-10-15" -> "15 de octubre". Si el año no es el de `hoy`, lo agrega:
  * "15 de octubre de 2025".
  */
-export function formatFecha(iso: string, hoy: string = hoyISO()): string {
+export function formatFecha(iso: string, hoy: string): string {
   const d = new Date(isoAUtc(iso));
   const anioHoy = new Date(isoAUtc(hoy)).getUTCFullYear();
   const base = `${d.getUTCDate()} de ${MESES_LARGOS[d.getUTCMonth()]}`;
@@ -116,7 +109,7 @@ export function diasEntre(hoy: string, iso: string): number {
 }
 
 /** "hoy", "mañana", "ayer", "en 3 días", "hace 2 días". */
-export function formatFechaRelativa(iso: string, hoy: string = hoyISO()): string {
+export function formatFechaRelativa(iso: string, hoy: string): string {
   const dias = diasEntre(hoy, iso);
   if (dias === 0) return "hoy";
   if (dias === 1) return "mañana";

@@ -8,7 +8,6 @@ import {
   formatMoney,
   formatNumero,
   formatPorcentaje,
-  hoyISO,
 } from "./format";
 
 describe("formatMoney", () => {
@@ -98,12 +97,5 @@ describe("formatMes", () => {
   });
   it("rechaza meses inválidos", () => {
     expect(() => formatMes("2026-13")).toThrow();
-  });
-});
-
-describe("hoyISO", () => {
-  it("usa la fecha de Argentina (UTC-3)", () => {
-    expect(hoyISO(new Date("2026-10-02T02:00:00Z"))).toBe("2026-10-01");
-    expect(hoyISO(new Date("2026-10-02T03:00:00Z"))).toBe("2026-10-02");
   });
 });

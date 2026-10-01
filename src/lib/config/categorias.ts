@@ -16,7 +16,9 @@ import type { CategoriaMonotributo, LetraCategoria } from "@/lib/domain/types";
  */
 
 const ARS = (pesos: number) => Math.round(pesos * 100);
-const VIGENCIA = "2026-02-01";
+// Placeholder: vigencia abierta para que la app funcione con cualquier fecha en desarrollo.
+// Las filas reales llevan la fecha de vigencia publicada por ARCA.
+const VIGENCIA = "2000-01-01";
 
 const filas: Array<[LetraCategoria, number, number]> = [
   // letra, tope anual (ARS), cuota mensual servicios (ARS)

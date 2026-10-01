@@ -62,6 +62,9 @@ function Money({
   const motionValue = useMotionValue(animate ? 0 : cents);
   const [shown, setShown] = React.useState(animate ? 0 : cents);
 
+  // Suscribirse antes de animar/saltar: los efectos corren en orden de declaración.
+  React.useEffect(() => motionValue.on("change", (v) => setShown(Math.round(v))), [motionValue]);
+
   React.useEffect(() => {
     if (!animate || reduce) {
       motionValue.jump(cents);
@@ -74,9 +77,9 @@ function Money({
     return () => controls.stop();
   }, [animate, reduce, cents, motionValue]);
 
-  React.useEffect(() => motionValue.on("change", (v) => setShown(Math.round(v))), [motionValue]);
-
-  const value = !animate || reduce ? cents : shown;
+  // El primer render debe coincidir con el del servidor (que no conoce prefers-reduced-motion):
+  // con `animate` siempre parte de `shown`; con movimiento reducido, el efecto salta al valor final.
+  const value = animate ? shown : cents;
 
   return (
     <span

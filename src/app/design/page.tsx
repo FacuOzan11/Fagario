@@ -347,6 +347,7 @@ export default function DesignPage() {
         title="Montos"
         lead="Centavos enteros formateados es-AR. Serif y tabulares de lg en adelante."
       >
+        <div className="grid gap-8">
         <dl className="grid gap-8">
           <div className="grid gap-1.5">
             <dt className="font-mono text-xs text-subtle-foreground">display · animate</dt>
@@ -366,7 +367,8 @@ export default function DesignPage() {
               <Money cents={125000000} size="lg" />
             </dd>
           </div>
-          <div className="grid grid-cols-2 gap-8 sm:max-w-md">
+        </dl>
+          <dl className="grid grid-cols-2 gap-8 sm:max-w-md">
             <div className="grid gap-1.5">
               <dt className="font-mono text-xs text-subtle-foreground">md · con centavos</dt>
               <dd>
@@ -379,8 +381,8 @@ export default function DesignPage() {
                 <Money cents={123400} currency="USD" size="sm" />
               </dd>
             </div>
-          </div>
-        </dl>
+          </dl>
+        </div>
       </Section>
 
       <Separator />
@@ -427,7 +429,7 @@ export default function DesignPage() {
         lead="Skeletons en vez de spinners. Estados vacíos que invitan a actuar."
       >
         <div className="grid gap-10">
-          <Card aria-busy="true" aria-label="Cargando resumen">
+          <Card role="status" aria-busy="true" aria-label="Cargando resumen">
             <CardHeader className="gap-3">
               <Skeleton className="h-3 w-32" />
               <Skeleton className="h-12 w-64" />

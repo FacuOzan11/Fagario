@@ -15,6 +15,7 @@ const PAIRS: Pair[] = [
   { fg: "muted-foreground", bg: "surface-muted", min: 4.5, uso: "Badge neutral" },
   { fg: "subtle-foreground", bg: "background", min: 4.5, uso: "Metadatos" },
   { fg: "subtle-foreground", bg: "surface", min: 4.5, uso: "Placeholder" },
+  { fg: "subtle-foreground", bg: "surface-muted", min: 4.5, uso: "Contadores y badges sobre fondo apagado" },
   { fg: "accent-foreground", bg: "accent", min: 4.5, uso: "Botón primario" },
   { fg: "accent-foreground", bg: "accent-hover", min: 4.5, uso: "Botón primario (hover)" },
   { fg: "accent", bg: "background", min: 4.5, uso: "Enlaces y acento" },
@@ -72,7 +73,12 @@ export function ContrastTable() {
   }, [snapshot]);
 
   return (
-    <div className="overflow-x-auto rounded-lg border border-border">
+    <div
+      role="region"
+      aria-label="Tabla de contraste"
+      tabIndex={0}
+      className="overflow-x-auto rounded-lg border border-border focus-visible:ring-2 focus-visible:ring-ring"
+    >
       <table className="w-full min-w-[560px] text-left text-sm">
         <caption className="sr-only">Ratios de contraste del tema activo</caption>
         <thead className="text-eyebrow text-muted-foreground">
@@ -98,7 +104,12 @@ export function ContrastTable() {
                       className="inline-flex size-8 shrink-0 items-center justify-center rounded-sm border border-border font-serif text-base"
                       style={{ background: `var(--${p.bg})`, color: `var(--${p.fg})` }}
                     >
-                      Aa
+                      {/* Pares no textuales (≥ 3:1: bordes, barras, foco): un trazo, no texto. */}
+                      {p.min < 4.5 ? (
+                        <span className="h-1 w-4 rounded-full" style={{ background: `var(--${p.fg})` }} />
+                      ) : (
+                        "Aa"
+                      )}
                     </span>
                     <code className="font-mono text-xs text-foreground">
                       {p.fg}

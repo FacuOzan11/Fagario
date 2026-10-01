@@ -28,7 +28,7 @@ export function BottomNav() {
                 aria-current={active ? "page" : undefined}
                 className={cn(
                   "relative flex min-h-16 flex-col items-center justify-center gap-1 px-1 text-[0.6875rem] leading-none outline-none",
-                  "focus-visible:bg-surface-muted transition-colors duration-150",
+                  "focus-visible:bg-surface-muted focus-visible:ring-ring transition-colors duration-150 focus-visible:ring-2 focus-visible:ring-inset",
                   active
                     ? "text-foreground font-medium"
                     : "text-muted-foreground",
